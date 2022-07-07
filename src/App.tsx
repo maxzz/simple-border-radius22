@@ -9,7 +9,7 @@ import { Section3_Footer } from './components/Section3_Footer';
 function Background() {
     return (
         <div className="fixed w-full h-full bg-yellow-200 pointer-events-none z-[-1]"
-            style={{ background: `url(${AppBackground}), linear-gradient(to right, #ff7800d4, #ffffff00)` }} //#6e88a0
+            style={{ background: `url(${AppBackground}), linear-gradient(to right, #ffd4add4, #ffa1a1)` }} //#6e88a0
         />
     );
 }

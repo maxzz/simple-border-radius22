@@ -1,6 +1,6 @@
 #### About
 
-Simplest border radius generator with Vue.js Composition API.
+Simplest border radius generator.
 
  a | b | c
 -----|-----|---
@@ -10,3 +10,6 @@ Simplest border radius generator with Vue.js Composition API.
  |  | ![](src/assets/previews/2020-12-18_4-44-41.png)
 
 #### Links, references, credits
+
+* [Original Vue.js project code](https://github.com/maxzz/border-radius-generator)
+* [Original Vue.js project demo](https://maxzz.github.io/border-radius-generator)
