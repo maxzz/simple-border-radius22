@@ -41,68 +41,82 @@ export const DarkShemaAtom = atomWithCallback(Storage.initialData.dark, Storage.
 
 ///////////////
 
-const enum ShowRects {
-    none,
-    css,
-    svg
-}
+const enum ShowRects { none, css, svg }
 
-type Options = {
-    showControls: boolean;
+// GeneratorOptions
 
+type GeneratorOptions = {
     shapes: number,
     borderWidth: number,
     scale: number,
     shiftX: number,
     shiftY: number,
     symmetrical: boolean;
-
-    showRects: ShowRects, // 0 - none; 1 - CSS; 2 - SVG
-    showCssRects: boolean;
-    showSvgRects: boolean;
-    showBorder: boolean;
-    showSvgFrame: boolean;
-    showOnlyOneRect: boolean;
-    animate: boolean,
-    demoMode: boolean,
 };
 
-const defaultOptions: Options = {
-    showControls: true,
-
+const defaultGeneratorOptions: GeneratorOptions = {
     shapes: 1,
     borderWidth: 1,
     scale: .1,
     shiftX: 20,
     shiftY: 20,
     symmetrical: true,
-
-    showRects: 0, // 0 - none; 1 - CSS; 2 - SVG
-    showCssRects: true,
-    showSvgRects: true,
-    showBorder: true,
-    showSvgFrame: true,
-    showOnlyOneRect: true,
-    animate: false,
-    demoMode: false,
 };
 
-const demoOptions: Options = {
-    showControls: true,
-    
+const demoGeneratorOptions: GeneratorOptions = {
     shapes: 10,
     borderWidth: 1,
     scale: .1, // scale: .0043,
     shiftX: 9,
     shiftY: 7,
     symmetrical: true,
-    
-    showRects: 0,
+};
+
+// ViewOptions
+
+type ViewOptions = {
+    showRects: ShowRects,
+    showCssRects: boolean;
+    showSvgRects: boolean;
+    showBorder: boolean;
+    showSvgFrame: boolean;
+    showOnlyOneRect: boolean;
+};
+
+const defaultViewOptions: ViewOptions = {
+    showRects: ShowRects.none,
+    showCssRects: true,
+    showSvgRects: true,
+    showBorder: true,
+    showSvgFrame: true,
+    showOnlyOneRect: true,
+};
+
+const demoViewOptions: ViewOptions = {
+    showRects: ShowRects.none,
     showCssRects: true,
     showSvgRects: true,
     showBorder: true,
     showSvgFrame: true,
     showOnlyOneRect: false,
+};
+
+// UIOptions
+
+type UIOptions = {
+    showControls: boolean;
+    animate: boolean,
+    demoMode: boolean,
+};
+
+const defaultOptions: UIOptions = {
+    showControls: true,
+    animate: false,
+    demoMode: false,
+};
+
+const demoOptions: UIOptions = {
+    showControls: true,
     animate: true,
     demoMode: true,
 };
