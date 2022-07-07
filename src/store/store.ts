@@ -1,5 +1,4 @@
 import { atom, Getter } from 'jotai';
-import { atomWithDefault } from 'jotai/utils';
 import { Atomize, atomWithCallback } from '../hooks/atomsX';
 import debounce from '../utils/debounce';
 import { defaultGeneratorOptions, defaultUIOptions, defaultViewOptions } from './store-initials';

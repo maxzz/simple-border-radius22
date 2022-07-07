@@ -8,7 +8,7 @@ export function Section2_Main() {
             {/* <div className="select-none max-w-full sm:max-w-max lg:w-auto mx-auto"> */}
 
             {/* Viewer and Controls */}
-            <div className={`grid grid-cols-1 lg:grid-cols-[minmax(604px,1fr)_max-content]`}>
+            <div className={`grid grid-cols-[minmax(400px,1fr)_max-content]`}>
                 <CanvasContainer />
                 <Controls />
             </div>

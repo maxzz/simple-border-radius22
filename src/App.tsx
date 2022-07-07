@@ -20,7 +20,7 @@ export function App() {
 
         <div className="App h-screen flex flex-col items-center text-yellow-900 debug-screens">
             <Section1_Header />
-            <main className="flex-1 w-full">
+            <main className="flex-1 w-full lg:flex items-center justify-center">
                 <Section2_Main />
             </main>
             <Section3_Footer />
