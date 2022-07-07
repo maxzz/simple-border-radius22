@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import { css } from '@stitches/react';
 import { InfoAppLogo } from './UI/UIIcons';
+import { classNames } from '@/utils/classnames';
 
 const HeroTitleStyles = css({
     $$borderColor: '#8e34eb7a', // '#8c01ff7a'
@@ -12,10 +13,9 @@ const HeroTitleStyles = css({
     'WebkitTextFillColor': '#9494e4'
 });
 
-export function Section1_Header() {
+export function Section1_Header({ className, ...rest }: HTMLAttributes<HTMLDivElement>) {
     return (
-        <header className="m-8 hidden md:flex justify-center items-center ">
-
+        <header className={classNames("", className)} {...rest}>
             <div>
                 <div>
                     {/* Logo and explanation */}

@@ -1,8 +1,9 @@
-import React from 'react';
+import { classNames } from '@/utils/classnames';
+import React, { HTMLAttributes } from 'react';
 
-export function Section3_Footer() {
+export function Section3_Footer({className, ...rest}: HTMLAttributes<HTMLDivElement>) {
     return (
-        <div className="m-4 mb-12 hidden md:flex flex-col items-center text-sm">
+        <div className={classNames("items-center text-sm", className)} {...rest}>
             <span>Created by Max Zakharzhevskiy</span>
 
             <p>
