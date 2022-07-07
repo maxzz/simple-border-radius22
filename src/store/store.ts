@@ -1,17 +1,23 @@
 import { atom, Getter } from 'jotai';
 import { atomWithDefault } from 'jotai/utils';
-import { atomWithCallback } from '../hooks/atomsX';
+import { Atomize, atomWithCallback } from '../hooks/atomsX';
 import debounce from '../utils/debounce';
+import { defaultGeneratorOptions, defaultUIOptions, defaultViewOptions } from './store-initials';
+import { GeneratorOptions, ShowRects, UIOptions, ViewOptions } from "./store-types";
 
 namespace Storage {
     const KEY = 'simple-border-radius22';
 
     type Store = {
-        dark: boolean;
+        generatorOptions: GeneratorOptions;
+        viewOptions: ViewOptions;
+        uiOptions: UIOptions;
     };
 
     export let initialData: Store = {
-        dark: false,
+        generatorOptions: defaultGeneratorOptions,
+        viewOptions: defaultViewOptions,
+        uiOptions: defaultUIOptions,
     };
 
     function load() {
@@ -28,7 +34,27 @@ namespace Storage {
 
     export const saveDebounced = debounce(function _save(get: Getter) {
         let newStore: Store = {
-            dark: get(DarkShemaAtom),
+            generatorOptions: {
+                shapes: get(generatorOptions.shapesAtom),
+                borderWidth: get(generatorOptions.borderWidthAtom),
+                scale: get(generatorOptions.scaleAtom),
+                shiftX: get(generatorOptions.shiftXAtom),
+                shiftY: get(generatorOptions.shiftYAtom),
+                symmetrical: get(generatorOptions.symmetricalAtom),
+            },
+            viewOptions: {
+                showRects: get(viewOptions.showRectsAtom),
+                showCssRects: get(viewOptions.showCssRectsAtom),
+                showSvgRects: get(viewOptions.showSvgRectsAtom),
+                showBorder: get(viewOptions.showBorderAtom),
+                showSvgFrame: get(viewOptions.showSvgFrameAtom),
+                showOnlyOneRect: get(viewOptions.showOnlyOneRectAtom),
+            },
+            uiOptions: {
+                showControls: get(uiOptions.showControlsAtom),
+                animate: get(uiOptions.animateAtom),
+                demoMode: get(uiOptions.demoModeAtom),
+            }
         };
         localStorage.setItem(KEY, JSON.stringify(newStore));
     }, 1000);
@@ -37,117 +63,28 @@ namespace Storage {
 
 } //namespace Storage
 
-export const DarkShemaAtom = atomWithCallback(Storage.initialData.dark, Storage.save);
-
 ///////////////
 
-const enum ShowRects { none, css, svg }
-
-// GeneratorOptions
-
-type GeneratorOptions = {
-    shapes: number,
-    borderWidth: number,
-    scale: number,
-    shiftX: number,
-    shiftY: number,
-    symmetrical: boolean;
+export const generatorOptions: Atomize<GeneratorOptions> = {
+    shapesAtom: atomWithCallback<number>(Storage.initialData.generatorOptions.shapes, Storage.save),
+    borderWidthAtom: atomWithCallback<number>(Storage.initialData.generatorOptions.borderWidth, Storage.save),
+    scaleAtom: atomWithCallback<number>(Storage.initialData.generatorOptions.scale, Storage.save),
+    shiftXAtom: atomWithCallback<number>(Storage.initialData.generatorOptions.shiftX, Storage.save),
+    shiftYAtom: atomWithCallback<number>(Storage.initialData.generatorOptions.shiftY, Storage.save),
+    symmetricalAtom: atomWithCallback<boolean>(Storage.initialData.generatorOptions.symmetrical, Storage.save),
 };
 
-const defaultGeneratorOptions: GeneratorOptions = {
-    shapes: 1,
-    borderWidth: 1,
-    scale: .1,
-    shiftX: 20,
-    shiftY: 20,
-    symmetrical: true,
+export const viewOptions: Atomize<ViewOptions> = {
+    showRectsAtom: atomWithCallback<ShowRects>(Storage.initialData.viewOptions.showRects, Storage.save),
+    showCssRectsAtom: atomWithCallback<boolean>(Storage.initialData.viewOptions.showCssRects, Storage.save),
+    showSvgRectsAtom: atomWithCallback<boolean>(Storage.initialData.viewOptions.showSvgRects, Storage.save),
+    showBorderAtom: atomWithCallback<boolean>(Storage.initialData.viewOptions.showBorder, Storage.save),
+    showSvgFrameAtom: atomWithCallback<boolean>(Storage.initialData.viewOptions.showSvgFrame, Storage.save),
+    showOnlyOneRectAtom: atomWithCallback<boolean>(Storage.initialData.viewOptions.showOnlyOneRect, Storage.save),
 };
 
-const demoGeneratorOptions: GeneratorOptions = {
-    shapes: 10,
-    borderWidth: 1,
-    scale: .1, // scale: .0043,
-    shiftX: 9,
-    shiftY: 7,
-    symmetrical: true,
+export const uiOptions: Atomize<UIOptions> = {
+    showControlsAtom: atomWithCallback<boolean>(Storage.initialData.uiOptions.showControls, Storage.save),
+    animateAtom: atomWithCallback<boolean>(Storage.initialData.uiOptions.animate, Storage.save),
+    demoModeAtom: atomWithCallback<boolean>(Storage.initialData.uiOptions.demoMode, Storage.save),
 };
-
-// ViewOptions
-
-type ViewOptions = {
-    showRects: ShowRects,
-    showCssRects: boolean;
-    showSvgRects: boolean;
-    showBorder: boolean;
-    showSvgFrame: boolean;
-    showOnlyOneRect: boolean;
-};
-
-const defaultViewOptions: ViewOptions = {
-    showRects: ShowRects.none,
-    showCssRects: true,
-    showSvgRects: true,
-    showBorder: true,
-    showSvgFrame: true,
-    showOnlyOneRect: true,
-};
-
-const demoViewOptions: ViewOptions = {
-    showRects: ShowRects.none,
-    showCssRects: true,
-    showSvgRects: true,
-    showBorder: true,
-    showSvgFrame: true,
-    showOnlyOneRect: false,
-};
-
-// UIOptions
-
-type UIOptions = {
-    showControls: boolean;
-    animate: boolean,
-    demoMode: boolean,
-};
-
-const defaultOptions: UIOptions = {
-    showControls: true,
-    animate: false,
-    demoMode: false,
-};
-
-const demoOptions: UIOptions = {
-    showControls: true,
-    animate: true,
-    demoMode: true,
-};
-
-function random(min: number, max: number): number {
-    return Math.floor(min + Math.random() * (max - min));
-}
-
-function generateShape(symmetrical: boolean) {
-    let wTL = random(5, 96);
-    let wBL = random(5, 96);
-    let hTL = random(5, 96);
-    let hTR = random(5, 96);
-
-    let wTR, wBR, hBL, hBR;
-
-    if (symmetrical) {
-        wTR = 100 - wTL;
-        wBR = 100 - wBL;
-        hBL = 100 - hTL;
-        hBR = 100 - hTR;
-    } else {
-        wTR = random(5, 96);
-        wBR = random(5, 96);
-        hBL = random(5, 96);
-        hBR = random(5, 96);
-    }
-
-    return `${wTL}% ${wTR}% ${wBR}% ${wBL}% / ${hTL}% ${hTR}% ${hBR}% ${hBL}%`;
-}
-
-function generateCorners(borderRadius: string) {
-    return [...(borderRadius || '').matchAll(/(\d\d*%)/g)].map((m) => m[1]);
-}
