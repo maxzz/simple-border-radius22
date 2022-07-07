@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .frame-box {
+        @apply 
+            relative w-full 
+            border-8 
+            border-primary-200 shadow  
+            after:absolute after:inset-0 after:border after:border-primary-400/50 after:pointer-events-none;
+    }
+    
+    .frame-square {
+        @apply before:block before:pb-[100%];
+    }
+}
