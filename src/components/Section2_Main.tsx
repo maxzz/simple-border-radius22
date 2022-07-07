@@ -12,7 +12,7 @@ export function Section2_Main({ className, ...rest }: HTMLAttributes<HTMLDivElem
 
             {/* Viewer and Controls */}
             {/* <div className={`grid grid-cols-[1fr_max-content]`}> */}
-            <div className={`p-4 grid grid-cols-[minmax(100px,1fr)_auto] md:grid-cols-[minmax(600px,1fr)_auto] gap-2`}>
+            <div className={`p-4 grid grid-cols-[minmax(100px,1fr)_auto] sm:grid-cols-[minmax(400px,1fr)_auto] md:grid-cols-[minmax(500px,1fr)_auto] gap-2`}>
                 <CanvasContainer />
                 <Controls />
             </div>

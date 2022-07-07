@@ -19,9 +19,9 @@ export function App() {
         <Background />
 
         <div className="App h-screen flex flex-col items-center text-yellow-900 debug-screens">
-            <Section1_Header className="m-8 hidden md:flex items-center justify-center" />
+            <Section1_Header className="m-8 hidden sm:flex items-center justify-center" />
             <Section2_Main className="flex-1 w-full" />
-            <Section3_Footer className="m-4 mb-12 hidden md:flex flex-col" />
+            <Section3_Footer className="mb-4 hidden sm:flex flex-col" />
         </div>
     </>);
 }
