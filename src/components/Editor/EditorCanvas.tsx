@@ -6,7 +6,7 @@ export function CanvasContainer() {
         <div
             className="
                 relative w-full
-                border-8 border-primary-200 shadow-lg
+                border-8 border-primary-200 shadow
                 before:block before:pb-[100%]
                 after:absolute after:inset-0 after:border after:border-primary-400/50 after:pointer-events-none"
         >

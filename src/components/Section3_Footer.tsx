@@ -2,7 +2,7 @@ import React from 'react';
 
 export function Section3_Footer() {
     return (
-        <div className="m-4 mb-12 hidden lg:flex flex-col items-center text-sm">
+        <div className="m-4 mb-12 hidden md:flex flex-col items-center text-sm">
             <span>Created by Max Zakharzhevskiy</span>
 
             <p>

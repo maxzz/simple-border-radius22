@@ -14,7 +14,7 @@ const HeroTitleStyles = css({
 
 export function Section1_Header() {
     return (
-        <header className="m-8 hidden lg:flex justify-center items-center ">
+        <header className="m-8 hidden md:flex justify-center items-center ">
 
             <div>
                 <div>
