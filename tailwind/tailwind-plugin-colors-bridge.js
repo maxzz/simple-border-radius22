@@ -25,10 +25,6 @@ const defOptions = {
     groupNameOut: 'primary',
 };
 
-//TODO: add option 'root' ? ':root' : '*, ::before, ::after'
-const useRoot = false;
-const rootSelector =  useRoot ? ':root' : '*, ::before, ::after';
-
 module.exports = plugin.withOptions(function (options) {
     return function ({ theme, addBase }) {
         const allColors = theme('colors');
@@ -37,22 +33,27 @@ module.exports = plugin.withOptions(function (options) {
          * @type {GroupOptions[]}
          */
         const arr = Array.isArray(options) ? options : [options];
-        const bridge = arr.reduce((acc, cur) => {
-            const o = { ...defOptions, ...cur };
-            const bridge = buildColorsToBridge(allColors, o);
-            return { ...acc, ...bridge };
-        }, {});
 
-        addBase({
-            [rootSelector]: {
-                ...bridge
-            },
-        });
+        const bridge = arr.reduce(
+            (acc, cur) => {
+                const opts = { ...defOptions, ...cur };
+                const bridge = buildColorsToBridge(allColors, opts);
+
+                const selector = opts.useRoot ? ':root' : opts.customRoot ? opts.customRoot : '*, ::before, ::after'; // '*, ::before, ::after, ::backdrop' if need
+                acc[selector] = {...acc[selector], ...bridge};
+
+                return acc;
+            }, {}
+        );
+
+        Object.entries(bridge).forEach(([sel, obj]) => addBase({ [sel]: obj }));
     };
 });
 
 /**
  * @typedef GroupOptions
+ * @property {boolean} useRoot              // optional: root selector: useRoot ? ':root' : '*, ::before, ::after'; default false
+ * @property {boolean} customRoot           // optional: custom root selector
  * @property {string} prefix                // optional: output color name prefix. default '--tm-'. It can be empty.
  * @property {string} groupName             // optional: source colors group name. default 'primary'.
  * @property {string} groupNameOut          // optional: output colors group name. default 'primary'.
@@ -68,6 +69,8 @@ Usage:
     colorsBridge([
         {prefix: '--aa-', groupName: 'green'},
         {prefix: '--aa-', groupName: 'green', groupNameOut: 'me'},
+        {prefix: '--aa-', groupName: 'green', groupNameOut: 'me', useRoot: true},
+        {prefix: '--aa-', groupName: 'green', groupNameOut: 'me', customRoot: '.tm, ::backdrop'},
         {prefix: '--', groupNameOut: 'me', vars: {'abc1': 'red', 'abc2': 'pink' }},
     ]),
 
