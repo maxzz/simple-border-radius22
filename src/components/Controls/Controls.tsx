@@ -45,10 +45,12 @@ export function Controls() {
             <Checkbox label="Generate symmetrical" valueAtom={generatorOptions.symmetricalAtom} />
 
             <div className="py-2">
-                <hr />
+                {/* <hr /> */}
+                {/* <div className="w-full h-px bg-ui-text" /> */}
+                <div className="w-full h-px bg-gradient-to-r from-transparent via-ui-text to-transparent" />
             </div>
 
-            <fieldset className="px-4 border rounded">
+            <fieldset className="px-4 border-ui-text border rounded">
                 <legend className="px-0.5">Show options</legend>
                 <div className="pt-1 pb-2 space-y-1">
                     <Checkbox label="Show CSS corner rectangles" valueAtom={viewOptions.showCssRectsAtom} />

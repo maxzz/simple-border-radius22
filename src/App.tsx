@@ -18,7 +18,7 @@ export function App() {
     return (<>
         <Background />
 
-        <div className="App h-screen flex flex-col items-center text-[color:var(--tm-yellow-900)] debug-screens"> {/* text-yellow-900 */}
+        <div className="App h-screen flex flex-col items-center text-ui-text debug-screens">
             <Section1_Header className="mt-12 hidden sm:flex items-center justify-center" />
             <Section2_Main className="flex-1 w-full" />
             <Section3_Footer className="mb-4 hidden sm:flex flex-col" />
