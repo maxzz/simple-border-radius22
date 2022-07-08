@@ -25,6 +25,10 @@ const defOptions = {
     groupNameOut: 'primary',
 };
 
+//TODO: add option 'root' ? ':root' : '*, ::before, ::after'
+const useRoot = false;
+const rootSelector =  useRoot ? ':root' : '*, ::before, ::after';
+
 module.exports = plugin.withOptions(function (options) {
     return function ({ theme, addBase }) {
         const allColors = theme('colors');
@@ -40,7 +44,7 @@ module.exports = plugin.withOptions(function (options) {
         }, {});
 
         addBase({
-            ':root': {
+            [rootSelector]: {
                 ...bridge
             },
         });
