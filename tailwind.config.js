@@ -11,11 +11,18 @@ module.exports = {
             }),
             colors: {
                 primary: colors.slate,
-                ascent: {
-                    bkg: 'var(--tm-slider-bg)',
-                    text: 'var(--tm-slider-clr)',
-                    stroke: 'var(--tm-slider-str)',
-                }
+                accent: {
+                    bg: '#ff9393',          // dark background
+                    text: '#fff',           // text color
+                    textBg: '#fff',         // color color on dark background
+                    border: '#a66d6d42',    // stroke / border
+                },
+                accentVar: {
+                    bg: 'var(--tm-accent-bg)',
+                    text: 'var(--tm-accent-text)',
+                    textBg: 'var(--tm-accent-textBg)',
+                    border: 'var(--tm-accent-border)',
+                },
             },
         },
     },
@@ -26,6 +33,9 @@ module.exports = {
         require('./tailwind/tailwnid-plugin-debug-styles'),
         require('./tailwind/tailwind-plugin-debug-screens'),
         require('@tailwindcss/forms')({ strategy: 'class' }),
-        require('./tailwind/tailwind-plugin-colors-bridge')({ prefix: '--tm-', groupName: 'primary' }),
+        require('./tailwind/tailwind-plugin-colors-bridge')([
+            { prefix: '--tm-', groupName: 'primary' },
+            { prefix: '--tm-', groupName: 'accent', groupNameOut: 'accent' },
+        ]),
     ],
 };
