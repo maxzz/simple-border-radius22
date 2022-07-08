@@ -23,6 +23,9 @@ module.exports = {
                     textBg: 'var(--tm-accent-textBg)',
                     border: 'var(--tm-accent-border)',
                 },
+                ui: {
+                    text: '#5a3543',
+                }
             },
         },
     },
@@ -36,6 +39,7 @@ module.exports = {
         require('./tailwind/tailwind-plugin-colors-bridge')([
             { prefix: '--tm-', groupName: 'primary' },
             { prefix: '--tm-', groupName: 'accent', groupNameOut: 'accent' },
+            { prefix: '--tm-', groupName: 'yellow', groupNameOut: 'yellow' },
         ]),
     ],
 };
