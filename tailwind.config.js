@@ -11,6 +11,11 @@ module.exports = {
             }),
             colors: {
                 primary: colors.slate,
+                ascent: {
+                    bkg: 'var(--tm-slider-bg)',
+                    text: 'var(--tm-slider-clr)',
+                    stroke: 'var(--tm-slider-str)',
+                }
             },
         },
     },

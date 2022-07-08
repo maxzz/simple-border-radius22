@@ -22,7 +22,7 @@ function Checkbox({ label, valueAtom, ...rest }: { label: string; valueAtom: Pri
     return (
         <label className="flex items-center space-x-1 select-none" {...rest}>
             <input
-                className="form-checkbox rounded text-primary-500 focus:ring-primary-500"
+                className="form-checkbox rounded text-ascent-bkg focus:ring-ascent-bkg"
                 type="checkbox"
                 checked={value}
                 onChange={() => setValue((v) => !v)}
