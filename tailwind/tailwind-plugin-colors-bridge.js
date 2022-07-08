@@ -1,4 +1,5 @@
 const plugin = require('tailwindcss/plugin');
+const defaultColors = require('tailwindcss/colors');
 
 /**
  * 
@@ -7,7 +8,7 @@ const plugin = require('tailwindcss/plugin');
  * @returns {Record<string, string>}
  */
 function buildColorsToBridge(allColors, o) {
-    const colorGroup = o.vars ? o.vars : allColors[o.groupName];
+    const colorGroup = o.vars ? o.vars : allColors[o.groupName] ? allColors[o.groupName] : defaultColors[o.groupName];
 
     const bridge = Object.fromEntries(
         Object.keys(colorGroup).map((colorKey) => [`${o.prefix}${o.groupNameOut || o.groupName}-${colorKey}`, colorGroup[colorKey],])
