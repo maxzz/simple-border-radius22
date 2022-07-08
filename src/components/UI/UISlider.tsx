@@ -32,8 +32,8 @@ const SliderRange = styled(RadixSlider.Range, {
     ...defaultStyles,
     position: 'absolute',
     height: '100%',
-    background: 'var(--tm-primary-500)',
-    border: '1px solid #00000050', outline: '2px solid transparent', 'outline-offset': '2px', //Chrome 93 makes outline as square: outline: '1px solid #00000050',
+    background: 'var(--tm-slider-bg)',
+    border: '1px solid var(--tm-slider-str)', outline: '2px solid transparent', 'outline-offset': '2px', //Chrome 93 makes outline as square: outline: '1px solid var(--tm-slider-str)',
     borderRadius: '3px',
 });
 
@@ -42,16 +42,16 @@ const SliderThumb = styled(RadixSlider.Thumb, {
     position: 'relative',
     width: 18,
     height: 18,
-    background: 'var(--tm-primary-500)',
+    background: 'var(--tm-slider-bg)',
     borderRadius: '50%',
     cursor: 'pointer',
     display: 'flex',
 
-    border: '1px solid #00000050', outline: '2px solid transparent', 'outline-offset': '2px', //Chrome 93 makes outline as square: outline: '1px solid #00000050',
+    border: '1px solid var(--tm-slider-str)', outline: '2px solid transparent', 'outline-offset': '2px', //Chrome 93 makes outline as square: outline: '1px solid var(--tm-slider-str)',
 
     //'--active': '0',
     //'&:active': { '--active': '1' },
-    '&:hover': { backgroundColor: 'var(--tm-primary-500)' },
+    '&:hover': { backgroundColor: 'var(--tm-slider-bg)' },
     '&:focus': { boxShadow: '0 0 0 5px #0000001c' },
 });
 
@@ -70,7 +70,7 @@ const SliderBalloon = styled('div', {
 
     fontSize: '.8em',
     textAlign: 'center',
-    color: 'var(--tm-primary-50)',
+    color: 'var(--tm-slider-clr)',
 
     willChange: 'transform',
     pointerEvents: 'none',
@@ -80,13 +80,13 @@ const SliderBalloon = styled('div', {
 function BallonSVG({ value }: { value: number; }) {
     return (
         <div className="relative">
-            <svg className="absolute inset-0" viewBox="-2 0 36 62" fill="var(--tm-primary-500)" stroke="#00000050">
+            <svg className="absolute inset-0" viewBox="-2 0 36 62" fill="var(--tm-slider-bg)" stroke="var(--tm-slider-str)">
                 <path d="M16,44.89S7,37.62,4.7,35.32a16,16,0,1,1,22.6,0C25,37.62,16,44.89,16,44.89Z" />
             </svg>
             <div className="relative w-full top-3 left-[-1px]">{value}</div>
         </div>
     );
-};
+}
 
 export const UISlider = React.forwardRef<HTMLSpanElement, RadixSlider.SliderProps & { ariaLabel?: string; }>((props, forwardedRef) => {
     const value = props.value || props.defaultValue || [];
@@ -97,23 +97,26 @@ export const UISlider = React.forwardRef<HTMLSpanElement, RadixSlider.SliderProp
 
     const bind = useDrag(({ event: { type } }) => {
         if (sliderRef.current) {
-            const set = type === 'pointerdown' ? 1 : type === 'pointerup' ? 0 : 2 
+            const set = type === 'pointerdown' ? 1 : type === 'pointerup' ? 0 : 2;
             set < 2 && (sliderRef.current.style.setProperty('--active', `${set}`));
         }
     });
 
     return (
         <SliderRoot {...bind()} ref={sliderRef} {...rest}>
+
             <SliderTrack>
                 <SliderRange />
             </SliderTrack>
-            {value.map((_, i) => (
-                <SliderThumb key={i} aria-label={ariaLabel}>
+
+            {value.map((thumbValue, idx) => (
+                <SliderThumb key={idx} aria-label={ariaLabel}>
                     <SliderBalloon>
-                        <BallonSVG value={_} />
+                        <BallonSVG value={thumbValue} />
                     </SliderBalloon>
                 </SliderThumb>
             ))}
+
         </SliderRoot>
     );
 });

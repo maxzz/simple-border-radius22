@@ -8,3 +8,9 @@
 body {
     background: #ff000059;
 }
+
+:root {
+    --tm-slider-bg: #ffa1a1; /* background */
+    --tm-slider-clr: white; /* color */
+    --tm-slider-str: #00000040; /* stroke/border */
+}
