@@ -32,8 +32,8 @@ const SliderRange = styled(RadixSlider.Range, {
     ...defaultStyles,
     position: 'absolute',
     height: '100%',
-    background: 'var(--tm-slider-bg)',
-    border: '1px solid var(--tm-slider-str)', outline: '2px solid transparent', 'outline-offset': '2px', //Chrome 93 makes outline as square: outline: '1px solid var(--tm-slider-str)',
+    background: 'var(--tm-accent-bg)',
+    border: '1px solid var(--tm-accent-border)', outline: '2px solid transparent', 'outline-offset': '2px', //Chrome 93 makes outline as square: outline: '1px solid var(--tm-accent-border)',
     borderRadius: '3px',
 });
 
@@ -42,16 +42,16 @@ const SliderThumb = styled(RadixSlider.Thumb, {
     position: 'relative',
     width: 18,
     height: 18,
-    background: 'var(--tm-slider-bg)',
+    background: 'var(--tm-accent-bg)',
     borderRadius: '50%',
     cursor: 'pointer',
     display: 'flex',
 
-    border: '1px solid var(--tm-slider-str)', outline: '2px solid transparent', 'outline-offset': '2px', //Chrome 93 makes outline as square: outline: '1px solid var(--tm-slider-str)',
+    border: '1px solid var(--tm-accent-border)', outline: '2px solid transparent', 'outline-offset': '2px', //Chrome 93 makes outline as square: outline: '1px solid var(--tm-accent-border)',
 
     //'--active': '0',
     //'&:active': { '--active': '1' },
-    '&:hover': { backgroundColor: 'var(--tm-slider-bg)' },
+    '&:hover': { backgroundColor: 'var(--tm-accent-bg)' },
     '&:focus': { boxShadow: '0 0 0 5px #0000001c' },
 });
 
@@ -70,7 +70,7 @@ const SliderBalloon = styled('div', {
 
     fontSize: '.8em',
     textAlign: 'center',
-    color: 'var(--tm-slider-clr)',
+    color: 'var(--tm-accent-textBg)',
 
     willChange: 'transform',
     pointerEvents: 'none',
@@ -80,7 +80,7 @@ const SliderBalloon = styled('div', {
 function BallonSVG({ value }: { value: number; }) {
     return (
         <div className="relative">
-            <svg className="absolute inset-0" viewBox="-2 0 36 62" fill="var(--tm-slider-bg)" stroke="var(--tm-slider-str)">
+            <svg className="absolute inset-0" viewBox="-2 0 36 62" fill="var(--tm-accent-bg)" stroke="var(--tm-accent-border)">
                 <path d="M16,44.89S7,37.62,4.7,35.32a16,16,0,1,1,22.6,0C25,37.62,16,44.89,16,44.89Z" />
             </svg>
             <div className="relative w-full top-3 left-[-1px]">{value}</div>
