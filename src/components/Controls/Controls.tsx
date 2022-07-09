@@ -5,6 +5,14 @@ import { SliderProps } from '@radix-ui/react-slider';
 import { doGenerateRadiusesAtom, generatorOptions, uiOptions, viewOptions } from '@/store/store';
 import { classNames } from '@/utils/classnames';
 
+function Separator() {
+    return (
+        <div className="h-0.5">
+            <div className="w-full h-px bg-gradient-to-r from-transparent via-ui-text/30 to-transparent" />
+        </div>
+    );
+}
+
 function SliderGroup({ label, valueAtom, ...rest }: { label: string; valueAtom: PrimitiveAtom<number>; } & SliderProps) {
     const [value, setValue] = useAtom(valueAtom);
     return (
@@ -61,17 +69,13 @@ export function Controls() {
 
             <Checkbox label="Generate symmetrical" valueAtom={generatorOptions.symmetricalAtom} />
 
-            <div className="h-0.5">
-                <div className="w-full h-px bg-gradient-to-r from-transparent via-ui-text/50 to-transparent" />
-            </div>
+            <Separator />
 
             <div className="flex items-center justify-end">
                 <Button valueAtom={doGenerateRadiusesAtom}>Generate</Button>
             </div>
 
-            <div className="h-0.5">
-                <div className="w-full h-px bg-gradient-to-r from-transparent via-ui-text/50 to-transparent" />
-            </div>
+            <Separator />
 
             <fieldset className="px-4 border-ui-text border rounded">
                 <legend className="px-0.5">Show options</legend>
