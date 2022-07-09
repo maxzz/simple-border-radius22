@@ -7,7 +7,7 @@
         @apply 
             relative w-full 
             border-8 
-            border-primary-200 shadow  
+            border-[#f8c8c7] shadow  
             after:absolute after:inset-0 after:border after:border-primary-400/50 after:pointer-events-none;
     }
     

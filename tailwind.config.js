@@ -24,6 +24,9 @@ module.exports = {
                     border: 'var(--tm-accent-border)',
                 },
                 ui: {
+                    // bg: colors.slate[200],
+                    // bg: '#f8e6e6',
+                    bg: colors.red[100],
                     text: '#5a3543',
                 }
             },
@@ -40,6 +43,7 @@ module.exports = {
             { prefix: '--tm-', groupName: 'primary' },
             { prefix: '--tm-', groupName: 'accent', groupNameOut: 'accent' },
             { prefix: '--tm-', groupName: 'yellow', groupNameOut: 'yellow' },
+            { prefix: '--tm-', groupName: 'ui', groupNameOut: 'ui' },
         ]),
     ],
 };

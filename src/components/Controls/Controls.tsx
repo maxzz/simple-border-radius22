@@ -46,7 +46,7 @@ function Button({ valueAtom, className, children, ...rest }: { valueAtom: Writab
     return (
         <button
             className={classNames(
-                "px-2 py-1 border-ui-text active:scale-x-[.97] border rounded shadow select-none",
+                "px-2 py-1 border-ui-text active:scale-[.97] border rounded shadow select-none",
                 className
             )}
             onClick={doGenerateRadiuses}
@@ -59,7 +59,7 @@ function Button({ valueAtom, className, children, ...rest }: { valueAtom: Writab
 
 export function Controls() {
     return (<>
-        <div className="p-2 frame-box text-sm space-y-2">
+        <div className="p-2 frame-box bg-[color:var(--tm-ui-bg)] text-sm space-y-2">
             <SliderGroup label="Number of shapes" min={1} max={20} valueAtom={generatorOptions.shapesAtom} />
             <SliderGroup label="Shape border width" min={1} max={100} valueAtom={generatorOptions.borderWidthAtom} />
             <SliderGroup label="Step scale" min={0.001} max={2} step={0.001} valueAtom={generatorOptions.scaleAtom} />
