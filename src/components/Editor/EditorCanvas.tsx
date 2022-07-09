@@ -1,16 +1,22 @@
 import React from 'react';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { borderRadiusesAtom } from '@/store/store';
+import { borderRadiusesAtom, generatorOptions } from '@/store/store';
 import { borderRadiusesStr } from '@/store/store-utils';
 
 function Bubba() {
     const borderRadiuses = useAtomValue(borderRadiusesAtom);
+    const borderWidth = useAtomValue(generatorOptions.borderWidthAtom);
     return (
-        <div className="absolute inset-2 bg-red-500" style={{ borderRadius: borderRadiusesStr(borderRadiuses) }}>
+        <div
+            className="absolute inset-2 bg-red-500"
+            style={{
+                borderRadius: borderRadiusesStr(borderRadiuses),
+                borderColor: 'green',
+                borderStyle: 'solid',
+                borderWidth: borderWidth,
+            }}>
         </div>
     );
-    // <div className="absolute inset-0 bg-red-500" style={{borderRadius: '23% 77% 82% 18% / 59% 21% 79% 41%'}}>
-    // </div>
 }
 
 export function CanvasContainer() {
