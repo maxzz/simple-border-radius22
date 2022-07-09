@@ -3,6 +3,7 @@ import { Atomize, atomWithCallback } from '../hooks/atomsX';
 import debounce from '../utils/debounce';
 import { defaultGeneratorOptions, defaultUIOptions, defaultViewOptions } from './store-initials';
 import { GeneratorOptions, ShowRects, UIOptions, ViewOptions } from "./store-types";
+import { BorderRadiuses, generateBorderRadiuses } from './store-utils';
 
 namespace Storage {
     const KEY = 'simple-border-radius22';
@@ -11,12 +12,18 @@ namespace Storage {
         generatorOptions: GeneratorOptions;
         viewOptions: ViewOptions;
         uiOptions: UIOptions;
+        shape: {
+            radiuses: BorderRadiuses;
+        };
     };
 
     export let initialData: Store = {
         generatorOptions: defaultGeneratorOptions,
         viewOptions: defaultViewOptions,
         uiOptions: defaultUIOptions,
+        shape: {
+            radiuses: generateBorderRadiuses(defaultGeneratorOptions.symmetrical),
+        },
     };
 
     function load() {
@@ -24,6 +31,7 @@ namespace Storage {
         if (s) {
             try {
                 let obj = JSON.parse(s) as Store;
+                obj.shape = obj.shape || initialData.shape; // nested should be initialized manually
                 initialData = obj;
             } catch (error) {
             }
@@ -53,6 +61,9 @@ namespace Storage {
                 showControls: get(uiOptions.showControlsAtom),
                 animate: get(uiOptions.animateAtom),
                 demoMode: get(uiOptions.demoModeAtom),
+            },
+            shape: {
+                radiuses: get(borderRadiusesAtom),
             }
         };
         localStorage.setItem(KEY, JSON.stringify(newStore));
@@ -87,3 +98,9 @@ export const uiOptions: Atomize<UIOptions> = {
     animateAtom: atomWithCallback<boolean>(Storage.initialData.uiOptions.animate, Storage.save),
     demoModeAtom: atomWithCallback<boolean>(Storage.initialData.uiOptions.demoMode, Storage.save),
 };
+
+///////////////
+
+// Derived atoms
+
+export const borderRadiusesAtom = atomWithCallback<BorderRadiuses>(Storage.initialData.shape.radiuses, Storage.save);

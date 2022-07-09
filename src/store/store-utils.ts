@@ -37,7 +37,7 @@ export function generateBorderRadiuses(symmetrical: boolean): BorderRadiuses {
     return { wTL, wTR, wBL, wBR, hTL, hTR, hBL, hBR, };
 }
 
-export function generateShape(borderRadiuses: BorderRadiuses): string {
+export function borderRadiusesStr(borderRadiuses: BorderRadiuses): string {
     const { wTL, wTR, wBL, wBR, hTL, hTR, hBL, hBR, } = borderRadiuses;
     return `${wTL}% ${wTR}% ${wBR}% ${wBL}% / ${hTL}% ${hTR}% ${hBR}% ${hBL}%`;
 }
@@ -61,7 +61,6 @@ export function generateShape(borderRadiuses: BorderRadiuses): string {
 //     }
 //     return `${wTL}% ${wTR}% ${wBR}% ${wBL}% / ${hTL}% ${hTR}% ${hBR}% ${hBL}%`;
 // }
-
-export function generateCorners(borderRadius: string): string[] {
-    return [...(borderRadius || '').matchAll(/(\d\d*%)/g)].map((m) => m[1]);
-}
+// export function generateCorners(borderRadius: string): string[] {
+//     return [...(borderRadius || '').matchAll(/(\d\d*%)/g)].map((m) => m[1]);
+// }
