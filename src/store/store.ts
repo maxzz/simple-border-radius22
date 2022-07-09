@@ -104,3 +104,12 @@ export const uiOptions: Atomize<UIOptions> = {
 // Derived atoms
 
 export const borderRadiusesAtom = atomWithCallback<BorderRadiuses>(Storage.initialData.shape.radiuses, Storage.save);
+
+export const doGenerateRadiusesAtom = atom(
+    null,
+    (get, set,) => {
+        const symmetrical = get(generatorOptions.symmetricalAtom);
+        const br = generateBorderRadiuses(symmetrical);
+        set(borderRadiusesAtom, br);
+    }
+);

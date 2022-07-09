@@ -1,8 +1,9 @@
 import React, { HTMLAttributes } from 'react';
-import { Atom, PrimitiveAtom, useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { Atom, PrimitiveAtom, useAtom, useAtomValue, useSetAtom, WritableAtom } from 'jotai';
 import { UISlider } from '../UI/UISlider';
 import { SliderProps } from '@radix-ui/react-slider';
-import { generatorOptions, uiOptions, viewOptions } from '@/store/store';
+import { doGenerateRadiusesAtom, generatorOptions, uiOptions, viewOptions } from '@/store/store';
+import { classNames } from '@/utils/classnames';
 
 function SliderGroup({ label, valueAtom, ...rest }: { label: string; valueAtom: PrimitiveAtom<number>; } & SliderProps) {
     const [value, setValue] = useAtom(valueAtom);
@@ -32,6 +33,22 @@ function Checkbox({ label, valueAtom, ...rest }: { label: string; valueAtom: Pri
     );
 }
 
+function Button({ valueAtom, className, children, ...rest }: { valueAtom: WritableAtom<null, unknown>; } & HTMLAttributes<HTMLButtonElement>) {
+    const doGenerateRadiuses = useSetAtom(valueAtom);
+    return (
+        <button
+            className={classNames(
+                "px-2 py-1 border-ui-text active:scale-x-[.97] border rounded shadow select-none",
+                className
+            )}
+            onClick={doGenerateRadiuses}
+            {...rest}
+        >
+            {children}
+        </button>
+    );
+}
+
 export function Controls() {
     return (<>
         <div className="p-2 frame-box text-sm space-y-2">
@@ -44,10 +61,16 @@ export function Controls() {
 
             <Checkbox label="Generate symmetrical" valueAtom={generatorOptions.symmetricalAtom} />
 
-            <div className="py-2">
-                {/* <hr /> */}
-                {/* <div className="w-full h-px bg-ui-text" /> */}
-                <div className="w-full h-px bg-gradient-to-r from-transparent via-ui-text to-transparent" />
+            <div className="h-0.5">
+                <div className="w-full h-px bg-gradient-to-r from-transparent via-ui-text/50 to-transparent" />
+            </div>
+
+            <div className="flex items-center justify-end">
+                <Button valueAtom={doGenerateRadiusesAtom}>Generate</Button>
+            </div>
+
+            <div className="h-0.5">
+                <div className="w-full h-px bg-gradient-to-r from-transparent via-ui-text/50 to-transparent" />
             </div>
 
             <fieldset className="px-4 border-ui-text border rounded">
@@ -62,4 +85,3 @@ export function Controls() {
         </div>
     </>);
 }
-
