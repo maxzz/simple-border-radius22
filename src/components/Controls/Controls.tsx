@@ -60,14 +60,17 @@ function Button({ valueAtom, className, children, ...rest }: { valueAtom: Writab
 export function Controls() {
     return (<>
         <div className="p-2 frame-box bg-[color:var(--tm-ui-bg)] text-sm space-y-2">
-            <SliderGroup label="Number of shapes" min={1} max={20} valueAtom={generatorOptions.shapesAtom} />
             <SliderGroup label="Shape border width" min={1} max={100} valueAtom={generatorOptions.borderWidthAtom} />
+
+            <Checkbox label="Generate symmetrical" valueAtom={generatorOptions.symmetricalAtom} />
+
+            <Separator />
+
+            <SliderGroup label="Number of shapes" min={1} max={20} valueAtom={generatorOptions.shapesAtom} />
             <SliderGroup label="Step scale" min={0.001} max={2} step={0.001} valueAtom={generatorOptions.scaleAtom} />
 
             <SliderGroup label="Step x shift" min={-50} max={50} step={1} valueAtom={generatorOptions.shiftXAtom} />
             <SliderGroup label="Step y shift" min={-50} max={50} step={1} valueAtom={generatorOptions.shiftYAtom} />
-
-            <Checkbox label="Generate symmetrical" valueAtom={generatorOptions.symmetricalAtom} />
 
             <Separator />
 

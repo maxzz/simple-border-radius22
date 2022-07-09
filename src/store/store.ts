@@ -42,8 +42,8 @@ namespace Storage {
     export const saveDebounced = debounce(function _save(get: Getter) {
         let newStore: Store = {
             generatorOptions: {
-                shapes: get(generatorOptions.shapesAtom),
                 borderWidth: get(generatorOptions.borderWidthAtom),
+                shapes: get(generatorOptions.shapesAtom),
                 scale: get(generatorOptions.scaleAtom),
                 shiftX: get(generatorOptions.shiftXAtom),
                 shiftY: get(generatorOptions.shiftYAtom),
@@ -76,8 +76,8 @@ namespace Storage {
 ///////////////
 
 export const generatorOptions: Atomize<GeneratorOptions> = {
-    shapesAtom: atomWithCallback<number>(Storage.initialData.generatorOptions.shapes, Storage.save),
     borderWidthAtom: atomWithCallback<number>(Storage.initialData.generatorOptions.borderWidth, Storage.save),
+    shapesAtom: atomWithCallback<number>(Storage.initialData.generatorOptions.shapes, Storage.save),
     scaleAtom: atomWithCallback<number>(Storage.initialData.generatorOptions.scale, Storage.save),
     shiftXAtom: atomWithCallback<number>(Storage.initialData.generatorOptions.shiftX, Storage.save),
     shiftYAtom: atomWithCallback<number>(Storage.initialData.generatorOptions.shiftY, Storage.save),

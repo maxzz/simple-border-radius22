@@ -11,7 +11,7 @@ function Bubba() {
             className="absolute inset-2 bg-red-500"
             style={{
                 borderRadius: borderRadiusesStr(borderRadiuses),
-                borderColor: 'green',
+                borderColor: '#bb0000',
                 borderStyle: 'solid',
                 borderWidth: borderWidth,
             }}>
