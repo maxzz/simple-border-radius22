@@ -1,3 +1,5 @@
+import { CSSProperties } from "react";
+
 export function random(min: number, max: number): number {
     return Math.floor(min + Math.random() * (max - min));
 }
@@ -45,6 +47,20 @@ export function borderRadiusesStr(borderRadiuses: BorderRadiuses): string {
 export function borderRadiusesArr(borderRadiuses: BorderRadiuses): number[] {
     const { wTL, wTR, wBL, wBR, hTL, hTR, hBL, hBR, } = borderRadiuses;
     return [wTL, wTR, wBR, wBL, hTL, hTR, hBR, hBL];
+}
+
+export function borderCSSProps(corners: number[], borderWidth: number): CSSProperties {
+    return {
+        '--w0': `${corners[0]}%`,
+        '--w1': `${corners[1]}%`,
+        '--w2': `${corners[2]}%`,
+        '--w3': `${corners[3]}%`,
+        '--h0': `${corners[4]}%`,
+        '--h1': `${corners[5]}%`,
+        '--h2': `${corners[6]}%`,
+        '--h3': `${corners[7]}%`,
+        '--border-width': `${borderWidth}px`,
+    } as CSSProperties;
 }
 
 // function borderRadiusesPairs(borderRadiuses: BorderRadiuses): [number, number][] {
