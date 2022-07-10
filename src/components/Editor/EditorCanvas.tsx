@@ -2,6 +2,7 @@ import React, { CSSProperties } from 'react';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { borderRadiusesAtom, generatorOptions } from '@/store/store';
 import { borderRadiusesArr, borderRadiusesPairs, borderRadiusesStr } from '@/store/store-utils';
+import './EditorCanvas.scss';
 
 function Bubba() {
     const borderRadiuses = useAtomValue(borderRadiusesAtom);

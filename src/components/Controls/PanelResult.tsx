@@ -9,7 +9,7 @@ export function PanelResult({ className, ...rest }: HTMLAttributes<HTMLDivElemen
 
     return (
         <div className={classNames("text-sm", className)} {...rest}>
-            {`border-radius: ${borderRadiusesStr(borderRadiuses)}`}
+            {`border-radius: ${borderRadiusesStr(borderRadiuses)};`}
         </div>
     );
 }
