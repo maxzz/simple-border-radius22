@@ -1,18 +1,13 @@
 import { borderRadiusesAtom, generatorOptions } from '@/store/store';
-import { borderCSSProps, borderRadiusesArr, borderRadiusesStr } from '@/store/store-utils';
+import { borderRadiusesStr } from '@/store/store-utils';
 import { classNames } from '@/utils/classnames';
 import { useAtomValue } from 'jotai';
 import React, { HTMLAttributes } from 'react';
 
 export function PanelResult({ className, ...rest }: HTMLAttributes<HTMLDivElement>) {
     const borderRadiuses = useAtomValue(borderRadiusesAtom);
-
-    const borderWidth = useAtomValue(generatorOptions.borderWidthAtom);
-
-    const corners = borderRadiusesArr(borderRadiuses);
-    const cornersCss = borderCSSProps(corners, borderWidth);
     const cornersStr = borderRadiusesStr(borderRadiuses);
-
+    //const borderWidth = useAtomValue(generatorOptions.borderWidthAtom);
     return (
         <div className={classNames("text-sm flex items-center justify-between", className)} {...rest}>
             <div>
@@ -24,7 +19,7 @@ export function PanelResult({ className, ...rest }: HTMLAttributes<HTMLDivElemen
                     style={{
                         borderRadius: cornersStr,
                         borderStyle: 'solid',
-                        borderWidth: borderWidth,
+                        borderWidth: 2,
                     }}
                 />
             </div>

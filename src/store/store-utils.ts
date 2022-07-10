@@ -62,36 +62,3 @@ export function borderCSSProps(corners: number[], borderWidth: number): CSSPrope
         '--border-width': `${borderWidth}px`,
     } as CSSProperties;
 }
-
-// function borderRadiusesPairs(borderRadiuses: BorderRadiuses): [number, number][] {
-//     const all = borderRadiusesArr(borderRadiuses);
-//     return [
-//         [all[0], all[4]],
-//         [all[1], all[5]],
-//         [all[2], all[6]],
-//         [all[3], all[7]],
-//     ];
-// }
-
-// export function generateShape(symmetrical: boolean): string {
-//     let wTL = random(5, 96);
-//     let wBL = random(5, 96);
-//     let hTL = random(5, 96);
-//     let hTR = random(5, 96);
-//     let wTR, wBR, hBL, hBR;
-//     if (symmetrical) {
-//         wTR = 100 - wTL;
-//         wBR = 100 - wBL;
-//         hBL = 100 - hTL;
-//         hBR = 100 - hTR;
-//     } else {
-//         wTR = random(5, 96);
-//         wBR = random(5, 96);
-//         hBL = random(5, 96);
-//         hBR = random(5, 96);
-//     }
-//     return `${wTL}% ${wTR}% ${wBR}% ${wBL}% / ${hTL}% ${hTR}% ${hBR}% ${hBL}%`;
-// }
-// export function generateCorners(borderRadius: string): string[] {
-//     return [...(borderRadius || '').matchAll(/(\d\d*%)/g)].map((m) => m[1]);
-// }

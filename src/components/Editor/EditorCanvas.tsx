@@ -53,31 +53,6 @@ function RectsSvg({ corners, className, ...rest }: { corners: number[]; } & HTML
     </>);
 }
 
-// function BubbaView({ corners }: { corners: number[]; }) {
-//     const showBorder = useAtomValue(viewOptions.showBorderAtom);
-//     const borderWidth = useAtomValue(generatorOptions.borderWidthAtom);
-
-//     const borderRadiuses = useAtomValue(borderRadiusesAtom);
-
-//     const cornersCss = {
-//         '--w0': `${corners[0]}%`,
-//         '--w1': `${corners[1]}%`,
-//         '--w2': `${corners[2]}%`,
-//         '--w3': `${corners[3]}%`,
-//         '--h0': `${corners[4]}%`,
-//         '--h1': `${corners[5]}%`,
-//         '--h2': `${corners[6]}%`,
-//         '--h3': `${corners[7]}%`,
-//         '--border-width': `${borderWidth}px`,
-//     } as CSSProperties;
-
-//     return (
-//         <div
-//             className={classNames("absolute inset-2 bg-red-500/20",)}
-//         />
-//     );
-// }
-
 function Bubba() {
     const showBorder = useAtomValue(viewOptions.showBorderAtom);
     const borderWidth = useAtomValue(generatorOptions.borderWidthAtom);
