@@ -47,15 +47,15 @@ export function borderRadiusesArr(borderRadiuses: BorderRadiuses): number[] {
     return [wTL, wTR, wBR, wBL, hTL, hTR, hBR, hBL];
 }
 
-function borderRadiusesPairs(borderRadiuses: BorderRadiuses): [number, number][] {
-    const all = borderRadiusesArr(borderRadiuses);
-    return [
-        [all[0], all[4]],
-        [all[1], all[5]],
-        [all[2], all[6]],
-        [all[3], all[7]],
-    ];
-}
+// function borderRadiusesPairs(borderRadiuses: BorderRadiuses): [number, number][] {
+//     const all = borderRadiusesArr(borderRadiuses);
+//     return [
+//         [all[0], all[4]],
+//         [all[1], all[5]],
+//         [all[2], all[6]],
+//         [all[3], all[7]],
+//     ];
+// }
 
 // export function generateShape(symmetrical: boolean): string {
 //     let wTL = random(5, 96);

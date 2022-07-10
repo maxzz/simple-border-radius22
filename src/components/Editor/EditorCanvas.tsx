@@ -4,6 +4,20 @@ import { borderRadiusesAtom, generatorOptions, viewOptions } from '@/store/store
 import { borderRadiusesArr, borderRadiusesStr } from '@/store/store-utils';
 import './EditorCanvas.scss';
 
+function RectsCss({ corners }: { corners: number[]; }) {
+    const showCssRects = useAtomValue(viewOptions.showCssRectsAtom);
+    return (<>
+        {showCssRects &&
+            <div className="markers">
+                <div className="css-marker bm-tl" title={`top-left: ${corners[0]}%, ${corners[4]}%`}> </div>
+                <div className="css-marker bm-tr" title={`top-right: ${corners[1]}%, ${corners[5]}%`}> </div>
+                <div className="css-marker bm-br" title={`bottom-right: ${corners[2]}%, ${corners[6]}%`}> </div>
+                <div className="css-marker bm-bl" title={`bottom-left: ${corners[3]}%, ${corners[7]}%`}> </div>
+            </div>
+        }
+    </>);
+}
+
 function Bubba() {
     const borderRadiuses = useAtomValue(borderRadiusesAtom);
     const borderWidth = useAtomValue(generatorOptions.borderWidthAtom);
@@ -20,8 +34,6 @@ function Bubba() {
         '--h3': `${corners[7]}%`,
     } as CSSProperties;
 
-    const showCssRects = useAtomValue(viewOptions.showCssRectsAtom);
-
     return (
         <div
             className="absolute inset-2 bg-red-500/20"
@@ -33,15 +45,7 @@ function Bubba() {
                 ...cornersCss,
             }}
         >
-            {showCssRects &&
-                <div className="markers">
-                    <div className="css-marker bm-tl" title={`top-left: ${corners[0]}%, ${corners[4]}%`}> </div>
-                    <div className="css-marker bm-tr" title={`top-right: ${corners[1]}%, ${corners[5]}%`}> </div>
-                    <div className="css-marker bm-br" title={`bottom-right: ${corners[2]}%, ${corners[6]}%`}> </div>
-                    <div className="css-marker bm-bl" title={`bottom-left: ${corners[3]}%, ${corners[7]}%`}> </div>
-                </div>
-            }
-
+            <RectsCss corners={corners} />
         </div>
     );
 }
