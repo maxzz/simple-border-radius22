@@ -22,13 +22,21 @@ function RectsCss({ corners, className, ...rest }: { corners: number[]; } & HTML
 function RectsSvg({ corners, className, ...rest }: { corners: number[]; } & HTMLAttributes<HTMLDivElement>) {
     const showSvgRects = useAtomValue(viewOptions.showSvgRectsAtom);
     const style = { fill: showSvgRects ? 'rgba(0, 255, 0, .2)' : 'none' };
+
+    const locations = {
+        tl: { cx: "100%", cy: "100%", rx: "100%", ry: "100%" },
+        tr: { cx: "0%", cy: "100%", rx: "100%", ry: "100%" },
+        br: { cx: "0%", cy: "0%", rx: "100%", ry: "100%" },
+        bl: { cx: "100%", cy: "0%", rx: "100%", ry: "100%" },
+    };
+    
     return (<>
         {showSvgRects &&
             <div className={classNames("markers", className)} {...rest}>
-                <svg className="svg-marker bm-tl" style={style}> <defs> <clipPath id="cl1"> <ellipse pathLength="4" cx="100%" cy="100%" rx="100%" ry="100%" /> </clipPath> </defs> <ellipse clipPath='url(#cl1)' pathLength="4" cx="100%" cy="100%" rx="100%" ry="100%" /> </svg>
-                <svg className="svg-marker bm-tr" style={style}> <defs> <clipPath id="cl2"> <ellipse pathLength="4" cx="0%" cy="100%" rx="100%" ry="100%" /> </clipPath> </defs> <ellipse clipPath='url(#cl2)' pathLength="4" cx="0%" cy="100%" rx="100%" ry="100%" /> </svg>
-                <svg className="svg-marker bm-br" style={style}> <defs> <clipPath id="cl3"> <ellipse pathLength="4" cx="0%" cy="0%" rx="100%" ry="100%" /> </clipPath> </defs> <ellipse clipPath='url(#cl3)' pathLength="4" cx="0%" cy="0%" rx="100%" ry="100%" /> </svg>
-                <svg className="svg-marker bm-bl" style={style}> <defs> <clipPath id="cl4"> <ellipse pathLength="4" cx="100%" cy="0%" rx="100%" ry="100%" /> </clipPath> </defs> <ellipse clipPath='url(#cl4)' pathLength="4" cx="100%" cy="0%" rx="100%" ry="100%" /> </svg>
+                <svg className="svg-marker bm-tl" style={style}> <defs> <clipPath id="cl1"> <ellipse {...locations.tl} /> </clipPath> </defs> <ellipse clipPath='url(#cl1)' pathLength="4" {...locations.tl} /> </svg>
+                <svg className="svg-marker bm-tr" style={style}> <defs> <clipPath id="cl2"> <ellipse {...locations.tr} /> </clipPath> </defs> <ellipse clipPath='url(#cl2)' pathLength="4" {...locations.tr} /> </svg>
+                <svg className="svg-marker bm-br" style={style}> <defs> <clipPath id="cl3"> <ellipse {...locations.br} /> </clipPath> </defs> <ellipse clipPath='url(#cl3)' pathLength="4" {...locations.br} /> </svg>
+                <svg className="svg-marker bm-bl" style={style}> <defs> <clipPath id="cl4"> <ellipse {...locations.bl} /> </clipPath> </defs> <ellipse clipPath='url(#cl4)' pathLength="4" {...locations.bl} /> </svg>
             </div>
         }
     </>);
