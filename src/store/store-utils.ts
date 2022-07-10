@@ -47,7 +47,7 @@ export function borderRadiusesArr(borderRadiuses: BorderRadiuses): number[] {
     return [wTL, wTR, wBR, wBL, hTL, hTR, hBR, hBL];
 }
 
-export function borderRadiusesPairs(borderRadiuses: BorderRadiuses): [number, number][] {
+function borderRadiusesPairs(borderRadiuses: BorderRadiuses): [number, number][] {
     const all = borderRadiusesArr(borderRadiuses);
     return [
         [all[0], all[4]],

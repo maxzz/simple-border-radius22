@@ -1,15 +1,14 @@
 import React, { CSSProperties } from 'react';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { borderRadiusesAtom, generatorOptions } from '@/store/store';
-import { borderRadiusesArr, borderRadiusesPairs, borderRadiusesStr } from '@/store/store-utils';
+import { borderRadiusesAtom, generatorOptions, viewOptions } from '@/store/store';
+import { borderRadiusesArr, borderRadiusesStr } from '@/store/store-utils';
 import './EditorCanvas.scss';
 
 function Bubba() {
     const borderRadiuses = useAtomValue(borderRadiusesAtom);
     const borderWidth = useAtomValue(generatorOptions.borderWidthAtom);
-    const corners = borderRadiusesArr(borderRadiuses);
-    const cornersPairs = borderRadiusesPairs(borderRadiuses);
 
+    const corners = borderRadiusesArr(borderRadiuses);
     const cornersCss = {
         '--w0': `${corners[0]}%`,
         '--w1': `${corners[1]}%`,
@@ -20,6 +19,8 @@ function Bubba() {
         '--h2': `${corners[6]}%`,
         '--h3': `${corners[7]}%`,
     } as CSSProperties;
+
+    const showCssRects = useAtomValue(viewOptions.showCssRectsAtom);
 
     return (
         <div
@@ -32,15 +33,14 @@ function Bubba() {
                 ...cornersCss,
             }}
         >
-            {/* {corners.map(([x, y], idx) => (
-                <div className="css-marker bm-tl" title="`top-left\n${corners[0]}, ${corners[4]}`" key={idx}> </div>
-            ))} */}
-            <div className="markers">
-                <div className="css-marker bm-tl" title={`top-left: ${corners[0]}%, ${corners[4]}%`}> </div>
-                <div className="css-marker bm-tr" title={`top-right: ${corners[1]}%, ${corners[5]}%`}> </div>
-                <div className="css-marker bm-br" title={`bottom-right: ${corners[2]}%, ${corners[6]}%`}> </div>
-                <div className="css-marker bm-bl" title={`bottom-left: ${corners[3]}%, ${corners[7]}%`}> </div>
-            </div>
+            {showCssRects &&
+                <div className="markers">
+                    <div className="css-marker bm-tl" title={`top-left: ${corners[0]}%, ${corners[4]}%`}> </div>
+                    <div className="css-marker bm-tr" title={`top-right: ${corners[1]}%, ${corners[5]}%`}> </div>
+                    <div className="css-marker bm-br" title={`bottom-right: ${corners[2]}%, ${corners[6]}%`}> </div>
+                    <div className="css-marker bm-bl" title={`bottom-left: ${corners[3]}%, ${corners[7]}%`}> </div>
+                </div>
+            }
 
         </div>
     );
