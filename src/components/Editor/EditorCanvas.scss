@@ -31,7 +31,13 @@ $border-br: hsl(180, 75%, 50%);
 $border-bl: hsl(270, 75%, 50%);
 
 .bubba {
-    border-color: #bb0000,
+    border-color: #bb0000;
+    transition: 1s border-radius;
+}
+
+.bubba-borders {
+    // border: var(--border-width) solid;
+    border-color: $border-tl $border-tr $border-br $border-bl;
 }
 
 .css-marker {
@@ -54,7 +60,18 @@ $border-bl: hsl(270, 75%, 50%);
     }
 }
 
-.bubba-borders {
-    // border: var(--border-width) solid;
-    border-color: $border-tl $border-tr $border-br $border-bl;
+.svg-marker {
+    position: absolute;
+    fill: none;
+    outline: 1px dashed yellowgreen;
+    $marker-opacity: .6;
+
+    & ellipse {
+        // fill: yellow;
+        // fill: none;
+        // fill: rgba(0, 255, 0, .2);
+        stroke: green;
+        stroke-width: .5;
+        //transition: all 2s;
+    }
 }
