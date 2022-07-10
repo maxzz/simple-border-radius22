@@ -35,9 +35,10 @@ function RectsSvg({ corners, className, ...rest }: { corners: number[]; } & HTML
 }
 
 function Bubba() {
-    const borderRadiuses = useAtomValue(borderRadiusesAtom);
+    const showBorder = useAtomValue(viewOptions.showBorderAtom);
     const borderWidth = useAtomValue(generatorOptions.borderWidthAtom);
 
+    const borderRadiuses = useAtomValue(borderRadiusesAtom);
     const corners = borderRadiusesArr(borderRadiuses);
     const cornersCss = {
         '--w0': `${corners[0]}%`,
@@ -48,9 +49,8 @@ function Bubba() {
         '--h1': `${corners[5]}%`,
         '--h2': `${corners[6]}%`,
         '--h3': `${corners[7]}%`,
+        '--border-width': `${borderWidth}px`,
     } as CSSProperties;
-
-    const showBorder = useAtomValue(viewOptions.showBorderAtom);
 
     return (
         <div className="absolute inset-0" style={cornersCss}>
