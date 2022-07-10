@@ -1,20 +1,46 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { borderRadiusesAtom, generatorOptions } from '@/store/store';
-import { borderRadiusesStr } from '@/store/store-utils';
+import { borderRadiusesArr, borderRadiusesPairs, borderRadiusesStr } from '@/store/store-utils';
 
 function Bubba() {
     const borderRadiuses = useAtomValue(borderRadiusesAtom);
     const borderWidth = useAtomValue(generatorOptions.borderWidthAtom);
+    const corners = borderRadiusesArr(borderRadiuses);
+    const cornersPairs = borderRadiusesPairs(borderRadiuses);
+
+    const cornersCss = {
+        '--w0': `${corners[0]}%`,
+        '--w1': `${corners[1]}%`,
+        '--w2': `${corners[2]}%`,
+        '--w3': `${corners[3]}%`,
+        '--h0': `${corners[4]}%`,
+        '--h1': `${corners[5]}%`,
+        '--h2': `${corners[6]}%`,
+        '--h3': `${corners[7]}%`,
+    } as CSSProperties;
+
     return (
         <div
-            className="absolute inset-2 bg-red-500"
+            className="absolute inset-2 bg-red-500/20"
             style={{
                 borderRadius: borderRadiusesStr(borderRadiuses),
                 borderColor: '#bb0000',
                 borderStyle: 'solid',
                 borderWidth: borderWidth,
-            }}>
+                ...cornersCss,
+            }}
+        >
+            {/* {corners.map(([x, y], idx) => (
+                <div className="css-marker bm-tl" title="`top-left\n${corners[0]}, ${corners[4]}`" key={idx}> </div>
+            ))} */}
+            <div className="markers">
+                <div className="css-marker bm-tl" title="`top-left\n${corners[0]}, ${corners[4]}`"> </div>
+                <div className="css-marker bm-tr" title="`top-left\n${corners[0]}, ${corners[4]}`"> </div>
+                <div className="css-marker bm-br" title="`top-left\n${corners[0]}, ${corners[4]}`"> </div>
+                <div className="css-marker bm-bl" title="`top-left\n${corners[0]}, ${corners[4]}`"> </div>
+            </div>
+
         </div>
     );
 }
