@@ -3,7 +3,7 @@ import { Section1_Header } from './components/Section1_Header';
 import { Section2_Main } from '@/components/Section2_Main';
 import AppBackground from './assets/bkg/app-bkg.png'; // graphcoders-lil-fiber.png
 //import AppBackground from './assets/bkg/pattern.svg';
-import './App.css';
+import './App.scss';
 import { Section3_Footer } from './components/Section3_Footer';
 
 function Background() {
