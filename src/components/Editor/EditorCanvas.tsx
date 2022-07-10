@@ -1,7 +1,7 @@
 import React, { CSSProperties, HTMLAttributes, SVGAttributes } from 'react';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { borderRadiusesAtom, generatorOptions, viewOptions } from '@/store/store';
-import { borderCSSProps, borderRadiusesArr, borderRadiusesStr } from '@/store/store-utils';
+import { borderCSSProps, borderRadiusesArr, borderRadiusesStr, getBubbaTransform } from '@/store/store-utils';
 import './EditorCanvas.scss';
 import { classNames } from '@/utils/classnames';
 
@@ -53,16 +53,15 @@ function RectsSvg({ corners, className, ...rest }: { corners: number[]; } & HTML
     </>);
 }
 
-function Bubba() {
+function Bubba({ transform }: { transform?: string; }) {
     const showBorder = useAtomValue(viewOptions.showBorderAtom);
     const borderWidth = useAtomValue(generatorOptions.borderWidthAtom);
 
     const borderRadiuses = useAtomValue(borderRadiusesAtom);
     const corners = borderRadiusesArr(borderRadiuses);
     const cornersCss = borderCSSProps(corners, borderWidth);
-
     return (
-        <div className="absolute inset-0" style={cornersCss}>
+        <div className="absolute inset-0" style={{ ...cornersCss, ...(transform && { transform }) }}>
             <div
                 className={classNames(
                     "absolute inset-2 bg-red-500/20",
@@ -76,18 +75,23 @@ function Bubba() {
             />
             <RectsCss className="absolute inset-2" corners={corners} />
             <RectsSvg className="absolute inset-2" corners={corners} />
-        </div>
+
+            {/* <div className="absolute left-2 bottom-2"> </div> */}
+        </div >
     );
 }
 
 export function CanvasContainer() {
+    const scale = useAtomValue(generatorOptions.scaleAtom);
+    const shiftX = useAtomValue(generatorOptions.shiftXAtom);
+    const shiftY = useAtomValue(generatorOptions.shiftYAtom);
+    const nShapes = useAtomValue(generatorOptions.nShapesAtom);
+    const shapes = Array(nShapes).fill(0);
     return (<>
         <div className="relative frame-box frame-square bg-[color:var(--tm-ui-bg)]">
-
-            <Bubba />
-
-            {/* <div className="absolute left-2 bottom-2"> </div> */}
+            {shapes.map((_, idx) => (
+                <Bubba key={idx} transform={getBubbaTransform(idx, scale, shiftX, shiftY)} />
+            ))}
         </div>
     </>);
 }
-

@@ -31,7 +31,12 @@ namespace Storage {
         if (s) {
             try {
                 let obj = JSON.parse(s) as Store;
-                obj.shape = obj.shape || initialData.shape; // nested should be initialized manually
+
+                obj.generatorOptions = {...initialData.generatorOptions, ...obj.generatorOptions},
+                obj.viewOptions = {...initialData.viewOptions, ...obj.viewOptions},
+                obj.uiOptions = {...initialData.uiOptions, ...obj.uiOptions},
+                obj.shape = {...initialData.shape, ...obj.shape}; // nested should be initialized manually
+
                 initialData = obj;
             } catch (error) {
             }
@@ -43,7 +48,7 @@ namespace Storage {
         let newStore: Store = {
             generatorOptions: {
                 borderWidth: get(generatorOptions.borderWidthAtom),
-                shapes: get(generatorOptions.shapesAtom),
+                nShapes: get(generatorOptions.nShapesAtom),
                 scale: get(generatorOptions.scaleAtom),
                 shiftX: get(generatorOptions.shiftXAtom),
                 shiftY: get(generatorOptions.shiftYAtom),
@@ -77,7 +82,7 @@ namespace Storage {
 
 export const generatorOptions: Atomize<GeneratorOptions> = {
     borderWidthAtom: atomWithCallback<number>(Storage.initialData.generatorOptions.borderWidth, Storage.save),
-    shapesAtom: atomWithCallback<number>(Storage.initialData.generatorOptions.shapes, Storage.save),
+    nShapesAtom: atomWithCallback<number>(Storage.initialData.generatorOptions.nShapes, Storage.save),
     scaleAtom: atomWithCallback<number>(Storage.initialData.generatorOptions.scale, Storage.save),
     shiftXAtom: atomWithCallback<number>(Storage.initialData.generatorOptions.shiftX, Storage.save),
     shiftYAtom: atomWithCallback<number>(Storage.initialData.generatorOptions.shiftY, Storage.save),

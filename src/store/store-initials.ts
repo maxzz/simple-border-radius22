@@ -3,7 +3,7 @@
 import { GeneratorOptions, ShowRects, UIOptions, ViewOptions } from "./store-types";
 
 export const defaultGeneratorOptions: GeneratorOptions = {
-    shapes: 1,
+    nShapes: 1,
     borderWidth: 1,
     scale: .1,
     shiftX: 20,
@@ -12,7 +12,7 @@ export const defaultGeneratorOptions: GeneratorOptions = {
 };
 
 export const demoGeneratorOptions: GeneratorOptions = {
-    shapes: 10,
+    nShapes: 10,
     borderWidth: 1,
     scale: .1, // scale: .0043,
     shiftX: 9,

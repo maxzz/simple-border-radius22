@@ -2,7 +2,7 @@ export const enum ShowRects { none, css, svg }
 
 export type GeneratorOptions = {
     borderWidth: number,
-    shapes: number,
+    nShapes: number,
     scale: number,
     shiftX: number,
     shiftY: number,

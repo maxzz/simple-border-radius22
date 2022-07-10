@@ -62,3 +62,7 @@ export function borderCSSProps(corners: number[], borderWidth: number): CSSPrope
         '--border-width': `${borderWidth}px`,
     } as CSSProperties;
 }
+
+export function getBubbaTransform(idx: number, scaleStep: number, shiftX: number, shiftY: number): string {
+    return `scale(${1 - scaleStep * idx})  translate(${shiftX * idx}px, ${shiftY * idx}px)`;
+}
