@@ -30,6 +30,10 @@ $border-tr: hsl(90, 75%, 50%);
 $border-br: hsl(180, 75%, 50%);
 $border-bl: hsl(270, 75%, 50%);
 
+.bubba {
+    border-color: #bb0000,
+}
+
 .css-marker {
     position: absolute;
     outline: 1px dashed yellowgreen;
@@ -48,4 +52,9 @@ $border-bl: hsl(270, 75%, 50%);
     &.bm-bl {
         background-color: transparentize($border-bl, $marker-opacity);
     }
+}
+
+.bubba-borders {
+    // border: var(--border-width) solid;
+    border-color: $border-tl $border-tr $border-br $border-bl;
 }

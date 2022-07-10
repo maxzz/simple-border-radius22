@@ -3,6 +3,7 @@ import { useAtomValue, useSetAtom } from 'jotai';
 import { borderRadiusesAtom, generatorOptions, viewOptions } from '@/store/store';
 import { borderRadiusesArr, borderRadiusesStr } from '@/store/store-utils';
 import './EditorCanvas.scss';
+import { classNames } from '@/utils/classnames';
 
 function RectsCss({ corners }: { corners: number[]; }) {
     const showCssRects = useAtomValue(viewOptions.showCssRectsAtom);
@@ -32,14 +33,19 @@ function Bubba() {
         '--h1': `${corners[5]}%`,
         '--h2': `${corners[6]}%`,
         '--h3': `${corners[7]}%`,
+        // '--border-width': `${borderWidth}px`,
     } as CSSProperties;
+
+    const showBorder = useAtomValue(viewOptions.showBorderAtom);
 
     return (
         <div
-            className="absolute inset-2 bg-red-500/20"
+            className={classNames(
+                "absolute inset-2 bg-red-500/20",
+                "bubba",  showBorder && "bubba-borders",
+            )}
             style={{
                 borderRadius: borderRadiusesStr(borderRadiuses),
-                borderColor: '#bb0000',
                 borderStyle: 'solid',
                 borderWidth: borderWidth,
                 ...cornersCss,

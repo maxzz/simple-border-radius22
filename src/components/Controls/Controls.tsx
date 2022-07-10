@@ -60,7 +60,7 @@ function Button({ valueAtom, className, children, ...rest }: { valueAtom: Writab
 export function Controls() {
     return (<>
         <div className="p-2 frame-box bg-[color:var(--tm-ui-bg)] text-sm space-y-2">
-            <SliderGroup label="Shape border width" min={1} max={100} valueAtom={generatorOptions.borderWidthAtom} />
+            <SliderGroup label="Shape border width" min={0} max={50} valueAtom={generatorOptions.borderWidthAtom} />
 
             <Checkbox label="Generate symmetrical" valueAtom={generatorOptions.symmetricalAtom} />
 
@@ -86,7 +86,7 @@ export function Controls() {
                     <Checkbox label="Show CSS corner rectangles" valueAtom={viewOptions.showCssRectsAtom} />
                     <Checkbox label="Show SVG corner rectangles" valueAtom={viewOptions.showSvgRectsAtom} />
                     <Checkbox label="Show SVG frame" valueAtom={viewOptions.showSvgFrameAtom} />
-                    <Checkbox label="Show borders" valueAtom={viewOptions.showBorderAtom} />
+                    <Checkbox label="Show border parts" valueAtom={viewOptions.showBorderAtom} />
                 </div>
             </fieldset>
         </div>
