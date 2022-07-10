@@ -70,9 +70,9 @@ $border-bl: hsl(270, 75%, 50%);
         // fill: yellow;
         // fill: none;
         // fill: rgba(0, 255, 0, .2);
-        stroke: green;
+        stroke: #32CD3280;
         //stroke-width: .5;
-        stroke-width: var(--border-width);
+        stroke-width: calc(var(--border-width) * 2);
         //transition: all 2s;
     }
 }
