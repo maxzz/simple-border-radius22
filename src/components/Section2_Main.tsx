@@ -1,6 +1,7 @@
 import { classNames } from '@/utils/classnames';
 import React, { HTMLAttributes } from 'react';
 import { Controls } from './Controls/Controls';
+import { PanelResult } from './Controls/PanelResult';
 import { CanvasContainer } from './Editor/EditorCanvas';
 
 export function Section2_Main({ className, ...rest }: HTMLAttributes<HTMLDivElement>) {
@@ -15,6 +16,7 @@ export function Section2_Main({ className, ...rest }: HTMLAttributes<HTMLDivElem
             <div className={`p-4 grid grid-cols-[minmax(100px,1fr)_auto] sm:grid-cols-[minmax(400px,1fr)_auto] md:grid-cols-[minmax(500px,1fr)_auto] gap-2`}>
                 <CanvasContainer />
                 <Controls />
+                <PanelResult className="col-span-full" />
             </div>
 
             {/* </div> */}

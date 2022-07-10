@@ -35,10 +35,10 @@ function Bubba() {
                 <div className="css-marker bm-tl" title="`top-left\n${corners[0]}, ${corners[4]}`" key={idx}> </div>
             ))} */}
             <div className="markers">
-                <div className="css-marker bm-tl" title="`top-left\n${corners[0]}, ${corners[4]}`"> </div>
-                <div className="css-marker bm-tr" title="`top-left\n${corners[0]}, ${corners[4]}`"> </div>
-                <div className="css-marker bm-br" title="`top-left\n${corners[0]}, ${corners[4]}`"> </div>
-                <div className="css-marker bm-bl" title="`top-left\n${corners[0]}, ${corners[4]}`"> </div>
+                <div className="css-marker bm-tl" title={`top-left: ${corners[0]}%, ${corners[4]}%`}> </div>
+                <div className="css-marker bm-tr" title={`top-right: ${corners[1]}%, ${corners[5]}%`}> </div>
+                <div className="css-marker bm-br" title={`bottom-right: ${corners[2]}%, ${corners[6]}%`}> </div>
+                <div className="css-marker bm-bl" title={`bottom-left: ${corners[3]}%, ${corners[7]}%`}> </div>
             </div>
 
         </div>
