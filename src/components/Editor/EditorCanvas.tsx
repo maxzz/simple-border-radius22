@@ -88,7 +88,7 @@ export function CanvasContainer() {
     const nShapes = useAtomValue(generatorOptions.nShapesAtom);
     const shapes = Array(nShapes).fill(0);
     return (<>
-        <div className="relative frame-box frame-square bg-[color:var(--tm-ui-bg)]">
+        <div className="relative frame-box frame-square bg-[color:var(--tm-ui-bg)] overflow-hidden">
             {shapes.map((_, idx) => (
                 <Bubba key={idx} transform={getBubbaTransform(idx, scale, shiftX, shiftY)} />
             ))}
