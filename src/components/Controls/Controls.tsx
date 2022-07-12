@@ -69,8 +69,10 @@ export function Controls() {
             <SliderGroup label="Number of shapes" min={1} max={20} valueAtom={generatorOptions.nShapesAtom} />
             <SliderGroup label="Step scale" min={0.001} max={2} step={0.001} valueAtom={generatorOptions.scaleAtom} />
 
-            <SliderGroup label="Step x shift" min={-50} max={50} step={1} valueAtom={generatorOptions.shiftXAtom} />
-            <SliderGroup label="Step y shift" min={-50} max={50} step={1} valueAtom={generatorOptions.shiftYAtom} />
+            <div className="grid grid-cols-2">
+                <SliderGroup label="Step x shift" min={-50} max={50} step={1} valueAtom={generatorOptions.shiftXAtom} />
+                <SliderGroup label="Step y shift" min={-50} max={50} step={1} valueAtom={generatorOptions.shiftYAtom} />
+            </div>
 
             <Separator />
 
