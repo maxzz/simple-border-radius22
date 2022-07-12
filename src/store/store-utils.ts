@@ -66,3 +66,7 @@ export function borderCSSProps(corners: number[], borderWidth: number): CSSPrope
 export function getBubbaTransform(idx: number, scaleStep: number, shiftX: number, shiftY: number): string {
     return `scale(${1 - scaleStep * idx})  translate(${shiftX * idx}%, ${shiftY * idx}%)`;
 }
+
+export function generateTransforms(nShapes: number, scale: number, shiftX: number, shiftY: number) {
+    return Array.from(Array(nShapes), (_, idx) => getBubbaTransform(idx, scale, shiftX, shiftY));
+}
