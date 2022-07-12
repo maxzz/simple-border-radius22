@@ -1,6 +1,6 @@
-import { createCss, StitchesCss } from "@stitches/react";
+import { createStitches, CSS as StitchesCss } from "@stitches/react";
 
-const stitchesConfig = createCss({ // as usual this goes to stitches.config.ts
+const stitchesConfig = createStitches({ // as usual this goes to stitches.config.ts
     media: {
         bp1: '(min-width: 640px)',
         bp2: '(min-width: 768px)',
@@ -8,6 +8,6 @@ const stitchesConfig = createCss({ // as usual this goes to stitches.config.ts
     },
 });
 
-export const { styled, css, keyframes, getCssString, theme } = stitchesConfig;
+export const { styled, css, keyframes, getCssText, theme } = stitchesConfig;
 
 export type CSS = StitchesCss<typeof stitchesConfig>;
