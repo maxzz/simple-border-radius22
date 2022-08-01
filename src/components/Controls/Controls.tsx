@@ -13,10 +13,10 @@ function Separator() {
     );
 }
 
-function SliderGroup({ label, valueAtom, ...rest }: { label: string; valueAtom: PrimitiveAtom<number>; } & SliderProps) {
+function SliderGroup({ label, valueAtom, title, ...rest }: { label: string; valueAtom: PrimitiveAtom<number>; } & SliderProps) {
     const [value, setValue] = useAtom(valueAtom);
     return (
-        <label className="flex flex-col space-y-1 whitespace-nowrap">
+        <label className="flex flex-col space-y-1 whitespace-nowrap select-none" title={title}>
             <div className="">{label}</div>
             <div className="flex items-center space-x-1">
                 <UISlider value={[value]} onValueChange={(v: number[]) => setValue(v[0])} {...rest} />
@@ -67,11 +67,11 @@ export function Controls() {
             <Separator />
 
             <SliderGroup label="Number of shapes" min={1} max={20} valueAtom={generatorOptions.nShapesAtom} />
-            <SliderGroup label="Step scale" min={0.001} max={2} step={0.001} valueAtom={generatorOptions.scaleAtom} />
+            <SliderGroup label="Scale of each shape" min={0.001} max={2} step={0.001} valueAtom={generatorOptions.scaleAtom} />
 
             <div className="grid grid-cols-2">
-                <SliderGroup label="Step x shift" min={-50} max={50} step={1} valueAtom={generatorOptions.shiftXAtom} />
-                <SliderGroup label="Step y shift" min={-50} max={50} step={1} valueAtom={generatorOptions.shiftYAtom} />
+                <SliderGroup label="Shape offest x" min={-50} max={50} step={1} valueAtom={generatorOptions.shiftXAtom} title="x offset of each shape" />
+                <SliderGroup label="Shape offest y" min={-50} max={50} step={1} valueAtom={generatorOptions.shiftYAtom} title="y offset of each shape" />
             </div>
 
             <Separator />
